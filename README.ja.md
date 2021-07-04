@@ -2,6 +2,7 @@
 
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 [![Node version](https://img.shields.io/badge/node-v14.16.1-blue)](https://github.com/ysmtegsr/kindle-booklog-sync)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ysmtegsr/kindle-booklog-sync)
 ![GitHub](https://img.shields.io/github/license/ysmtegsr/kindle-booklog-sync)
 [![Lint](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml)
 [![Deployment](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml)
@@ -11,6 +12,16 @@
 
 [Kindle](https://www.amazon.co.jp/ranking?type=top-sellers&ref_=nav_cs_bestsellers_1837a9214239486ba2b00680c5ef8837) で購入した書籍を [ブクログ](https://booklog.jp) へ自動で登録するスクリプトです。
 
+![image](https://user-images.githubusercontent.com/38056766/124377095-2fa69580-dce5-11eb-9d14-e14891e6f168.png)
+
+## 機能
+
+- ブクログへの認証
+- Gmail インボックスを検索
+- メール本文から asin を取得
+- 取得した asin を元にブクログにアップロード
+- ログをスプレッドシートに残す
+- メールをアーカイブ
 ## 環境
 
 ```sh

@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  release:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -85,3 +85,23 @@ jobs:
 
       - name: Add version
         run: npx @google/clasp version ${{ steps.version.outputs.VERSION }}
+
+  release:
+    name: Create release note automatically.
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
