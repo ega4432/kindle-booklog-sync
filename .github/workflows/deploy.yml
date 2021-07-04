@@ -1,4 +1,4 @@
-name: Publish Release
+name: Deployment
 
 on:
   push:
@@ -8,50 +8,56 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14.16.x']
 
     env:
-      CLASPRC_ACCESS_TOKEN: ${{ secrets.CLASPRC_ACCESS_TOKEN }}
-      CLASPRC_CLIENT_ID: ${{ secrets.CLASPRC_CLIENT_ID }}
-      CLASPRC_CLIENT_SECRET: ${{ secrets.CLASPRC_CLIENT_SECRET }}
-      CLASPRC_EXPIRY_DATE: ${{ secrets.CLASPRC_EXPIRY_DATE }}
-      CLASPRC_ID_TOKEN: ${{ secrets.CLASPRC_ID_TOKEN }}
-      CLASPRC_REFRESH_TOKEN: ${{ secrets.CLASPRC_REFRESH_TOKEN }}
+      CLASP_ACCESS_TOKEN: ${{ secrets.CLASP_ACCESS_TOKEN }}
+      CLASP_CLIENT_ID: ${{ secrets.CLASP_CLIENT_ID }}
+      CLASP_CLIENT_SECRET: ${{ secrets.CLASP_CLIENT_SECRET }}
+      CLASP_EXPIRY_DATE: ${{ secrets.CLASP_EXPIRY_DATE }}
+      CLASP_ID_TOKEN: ${{ secrets.CLASP_ID_TOKEN }}
+      CLASP_REFRESH_TOKEN: ${{ secrets.CLASP_REFRESH_TOKEN }}
       CLASP_SCRIPT_ID: ${{ secrets.CLASP_SCRIPT_ID }}
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: Set env
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Cache node modules
         uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+        id: yarn-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
-      - name: Create ~/.clasprc.json
+      - name: Create authentication file
         run: |
           echo $(cat <<-EOS
           {
             "token": {
-              "access_token": "${CLASPRC_ACCESS_TOKEN}",
-              "scope": "https://www.googleapis.com/auth/script.deployments https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive.file openid https://www.googleapis.com/auth/service.management https://www.googleapis.com/auth/script.projects https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/logging.read https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/script.webapp.deploy",
+              "access_token": "${CLASP_ACCESS_TOKEN}",
+              "scope": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/script.webapp.deploy openid https://www.googleapis.com/auth/script.projects https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/service.management https://www.googleapis.com/auth/logging.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/script.deployments https://www.googleapis.com/auth/drive.metadata.readonly",
               "token_type": "Bearer",
-              "id_token": "${CLASPRC_ID_TOKEN}",
-              "expiry_date": ${CLASPRC_EXPIRY_DATE},
-              "refresh_token": "${CLASPRC_REFRESH_TOKEN}"
+              "id_token": "${CLASP_ID_TOKEN}",
+              "expiry_date": ${CLASP_EXPIRY_DATE},
+              "refresh_token": "${CLASP_REFRESH_TOKEN}"
             },
             "oauth2ClientSettings": {
-              "clientId": "${CLASPRC_CLIENT_ID}",
-              "clientSecret": "${CLASPRC_CLIENT_SECRET}",
+              "clientId": "${CLASP_CLIENT_ID}",
+              "clientSecret": "${CLASP_CLIENT_SECRET}",
               "redirectUri": "http://localhost"
             },
             "isLocalCreds": false
@@ -59,21 +65,23 @@ jobs:
           EOS
           ) > ~/.clasprc.json
 
-      - name: Create ~/.clasp.json
+      - name: Create clasp application file
         run: |
           echo $(cat <<-EOS
           {
-            "scriptId": "${CLASP_SCRIPT_ID}"
+            "scriptId": "${CLASP_SCRIPT_ID}",
+            "rootDir": "./src",
+            "fileExtension": "ts"
           }
           EOS
           ) > ./.clasp.json
 
       - name: Get version
-        id: get_version
+        id: version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
-      - name: Upload files
+      - name: Deploy to GAS
         run: npx @google/clasp push --force
 
       - name: Add version
-        run: npx @google/clasp version ${{ steps.get_version.outputs.VERSION }}
+        run: npx @google/clasp version ${{ steps.version.outputs.VERSION }}

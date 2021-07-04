@@ -6,21 +6,12 @@
 [![Lint](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml)
 [![Deployment](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml)
 
-| English | [Japanese](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/README.md) |
+| [英語](https://github.com/ysmtegsr/kindle-booklog-sync) | 日本語 |
 | --- | --- |
 
-A program that automatically uploads books purchased on [Kindle](https://www.amazon.co.jp/ranking?type=top-sellers&ref_=nav_cs_bestsellers_1837a9214239486ba2b00680c5ef8837) to [Booklog](https://booklog.jp).
+[Kindle](https://www.amazon.co.jp/ranking?type=top-sellers&ref_=nav_cs_bestsellers_1837a9214239486ba2b00680c5ef8837) で購入した書籍を [ブクログ](https://booklog.jp) へ自動で登録するスクリプトです。
 
-## Features
-
-- Login to Booklog
-- Search your Gmail inbox
-- Get asin code from email body
-- Upload new book to booklog using asin
-- Leave a log on the spreadsheet
-- Archive uploaded book notification emails
-
-## Environments
+## 環境
 
 ```sh
 $ node --version
@@ -33,12 +24,12 @@ $ clasp --version
 2.3.1
 ```
 
-## Setup
+## セットアップ
 
-### Installation
+### インストール
 
 ```sh
-# If you haven't installed it yet, do the following
+# clasp CLI を導入していない場合は実行
 $ npm install -g @google/clasp
 
 $ git clone git@github.com:ysmtegsr/kindle-booklog-sync.git
@@ -46,7 +37,7 @@ $ git clone git@github.com:ysmtegsr/kindle-booklog-sync.git
 $ yarn
 ```
 
-### Dependencies
+### 事前に準備するもの
 
 - Google Account
   - Apps Script
@@ -54,27 +45,27 @@ $ yarn
   - Spreadsheet
 - Booklog Account
 
-## Usage
+## 開発手順
 
 ```sh
-# Auth
+# clasp 認証
 $ clasp login
 
-# Create project
+# プロジェクトを作成
 $ clasp create --title "kindle-booklog-sync" \
     --type sheets \
     --rootDir ./src
 
-# Deploy
+# デプロイ
 $ yarn push
 ```
 
 ### Tips
 
 ```sh
-# Lint
+# コードチェック
 $ yarn lint
 
-# In development
+# 変更を監視
 $ yarn watch
 ```
