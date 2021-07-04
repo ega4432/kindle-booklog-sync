@@ -6,7 +6,7 @@
 [![Lint](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml)
 [![Deployment](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml)
 
-| English | [Japanese](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/README.md) |
+| English | [Japanese](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/README.ja.md) |
 | --- | --- |
 
 A program that automatically uploads books purchased on [Kindle](https://www.amazon.co.jp/ranking?type=top-sellers&ref_=nav_cs_bestsellers_1837a9214239486ba2b00680c5ef8837) to [Booklog](https://booklog.jp).
