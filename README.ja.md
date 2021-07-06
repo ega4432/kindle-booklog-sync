@@ -80,3 +80,15 @@ $ yarn lint
 # 変更を監視
 $ yarn watch
 ```
+
+## デプロイメント
+
+<details><summary>デプロイの前に準備が必要です。ご自身のリポジトリの secret に下記を登録してください。</summary>
+
+`リポジトリの TOP` > `Settings` > `Secrets` で登録画面に行くことができます。
+
+![](https://user-images.githubusercontent.com/38056766/124621061-ee64e000-deb4-11eb-80bf-9bd9ffed7cdc.png)
+
+</details>
+
+デプロイメントは、タグをトリガーに GitHub Actions で行われます。詳細は [deploy.yml](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/.github/workflows/deploy.yml) をご覧ください。プレフィックス "v" から始まるタグを打つようにしてください。

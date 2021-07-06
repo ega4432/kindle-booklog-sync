@@ -81,3 +81,16 @@ $ yarn lint
 # In development
 $ yarn watch
 ```
+
+## Deployment
+
+<details><summary>Preparation is required before deployment. Please register the following in the secret.</summary>
+
+You can go to that page with `Your Repository TOP` > `Settings` > `Secrets`.
+
+![](https://user-images.githubusercontent.com/38056766/124621061-ee64e000-deb4-11eb-80bf-9bd9ffed7cdc.png)
+
+</details>
+
+Deployment is triggered by tags in GitHub Actions. See [deploy.yml](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/.github/workflows/deploy.yml) for more details.
+Please type the tag starting with the prefix "v".
