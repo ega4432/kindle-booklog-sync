@@ -86,7 +86,31 @@ $ yarn watch
 
 <details><summary>Preparation is required before deployment. Please register the following in the secret.</summary>
 
+If you have been authenticated using the command line ( e.g. `clasp login` ), there should have generated `~/.clasprc.json`. Please refer to it and complete the registration.
+
+```sh
+$ cat ~/.clasprc.json | jq .
+{
+  "token": {
+    "access_token": "XXXXXXXXXXXXXXXXXXX",
+    "scope": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/script.webapp.deploy openid https://www.googleapis.com/auth/script.projects https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/service.management https://www.googleapis.com/auth/logging.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/script.deployments https://www.googleapis.com/auth/drive.metadata.readonly",
+    "token_type": "Bearer",
+    "id_token": "XXXXXXXXXXXXXXXX",
+    "expiry_date": 1234567890,
+    "refresh_token": "AAAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCCCCCCCCDDDDDDDDDDDDEEEEEEEEEEEEEFFFFFFFFFFFFFGGGGGGGGGGGGGGGHHHHHHHHHH"
+  },
+  "oauth2ClientSettings": {
+    "clientId": "1111111111-abcdefghijklmn22222222222.apps.googleusercontent.com",
+    "clientSecret": "abcdefghijklmn",
+    "redirectUri": "http://localhost"
+  },
+  "isLocalCreds": false
+}
+```
+
 You can go to that page with `Your Repository TOP` > `Settings` > `Secrets`.
+
+The final result will be the attached image below.
 
 ![](https://user-images.githubusercontent.com/38056766/124621061-ee64e000-deb4-11eb-80bf-9bd9ffed7cdc.png)
 

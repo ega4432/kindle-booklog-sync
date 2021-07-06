@@ -83,9 +83,34 @@ $ yarn watch
 
 ## デプロイメント
 
-<details><summary>デプロイの前に準備が必要です。ご自身のリポジトリの secret に下記を登録してください。</summary>
+<details><summary>デプロイメントの前に準備が必要です。ご自身のリポジトリの secret に下記を登録してください。</summary>
 
+コマンドラインを使って認証済みであれば（ `clasp login` を実行済みであれば）、`~/.clasprc.json` というファイルが生成されているはずです。それを参照して登録を完了してください。
+
+```sh
+$ cat ~/.clasprc.json | jq .
+{
+  "token": {
+    "access_token": "XXXXXXXXXXXXXXXXXXX",
+    "scope": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/script.webapp.deploy openid https://www.googleapis.com/auth/script.projects https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/service.management https://www.googleapis.com/auth/logging.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/script.deployments https://www.googleapis.com/auth/drive.metadata.readonly",
+    "token_type": "Bearer",
+    "id_token": "XXXXXXXXXXXXXXXX",
+    "expiry_date": 1234567890,
+    "refresh_token": "AAAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCCCCCCCCDDDDDDDDDDDDEEEEEEEEEEEEEFFFFFFFFFFFFFGGGGGGGGGGGGGGGHHHHHHHHHH"
+  },
+  "oauth2ClientSettings": {
+    "clientId": "1111111111-abcdefghijklmn22222222222.apps.googleusercontent.com",
+    "clientSecret": "abcdefghijklmn",
+    "redirectUri": "http://localhost"
+  },
+  "isLocalCreds": false
+}
+```
+
+リポジトリの secrets を登録します。
 `リポジトリの TOP` > `Settings` > `Secrets` で登録画面に行くことができます。
+
+最終的には以下の添付画像のようになります。
 
 ![](https://user-images.githubusercontent.com/38056766/124621061-ee64e000-deb4-11eb-80bf-9bd9ffed7cdc.png)
 
