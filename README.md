@@ -1,13 +1,13 @@
 # Kindle Booklog Sync
 
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
-[![Node version](https://img.shields.io/badge/node-v14.16.1-blue)](https://github.com/ysmtegsr/kindle-booklog-sync)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/ysmtegsr/kindle-booklog-sync)
-![GitHub](https://img.shields.io/github/license/ysmtegsr/kindle-booklog-sync)
-[![Lint](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/lint.yml)
-[![Deployment](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml/badge.svg)](https://github.com/ysmtegsr/kindle-booklog-sync/actions/workflows/deploy.yml)
+[![Node version](https://img.shields.io/badge/node-v14.16.1-blue)](https://github.com/ega4432/kindle-booklog-sync)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ega4432/kindle-booklog-sync)
+![GitHub](https://img.shields.io/github/license/ega4432/kindle-booklog-sync)
+[![Lint](https://github.com/ega4432/kindle-booklog-sync/actions/workflows/lint.yml/badge.svg)](https://github.com/ega4432/kindle-booklog-sync/actions/workflows/lint.yml)
+[![Deployment](https://github.com/ega4432/kindle-booklog-sync/actions/workflows/deploy.yml/badge.svg)](https://github.com/ega4432/kindle-booklog-sync/actions/workflows/deploy.yml)
 
-| English | [Japanese](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/README.ja.md) |
+| English | [Japanese](https://github.com/ega4432/kindle-booklog-sync/blob/main/README.ja.md) |
 | --- | --- |
 
 A program that automatically uploads books purchased on [Kindle](https://www.amazon.co.jp/ranking?type=top-sellers&ref_=nav_cs_bestsellers_1837a9214239486ba2b00680c5ef8837) to [Booklog](https://booklog.jp).
@@ -44,7 +44,7 @@ $ clasp --version
 # If you haven't installed it yet, do the following
 $ npm install -g @google/clasp
 
-$ git clone git@github.com:ysmtegsr/kindle-booklog-sync.git
+$ git clone git@github.com:ega4432/kindle-booklog-sync.git
 
 $ yarn
 ```
@@ -116,5 +116,5 @@ The final result will be the attached image below.
 
 </details>
 
-Deployment is triggered by tags in GitHub Actions. See [deploy.yml](https://github.com/ysmtegsr/kindle-booklog-sync/blob/main/.github/workflows/deploy.yml) for more details.
+Deployment is triggered by tags in GitHub Actions. See [deploy.yml](https://github.com/ega4432/kindle-booklog-sync/blob/main/.github/workflows/deploy.yml) for more details.
 Please type the tag starting with the prefix "v".
