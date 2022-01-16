@@ -1,13 +1,13 @@
 {
   "name": "kindle-booklog-sync",
   "version": "1.0.0",
-  "main": "Code.ts",
+  "main": "main.ts",
   "repository": "github.com/ysmtegsr/kindle-booklog-sync",
-  "author": "@ysmtegsr",
+  "author": "@ega4432",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "npx eslint ./**/*.ts",
+    "lint": "eslint ./src/**/*.ts",
     "push": "clasp push",
     "watch": "clasp push --watch"
   },
