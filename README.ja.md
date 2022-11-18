@@ -1,5 +1,9 @@
 # Kindle Booklog Sync
 
+**Warning**
+
+書籍購入時にamazon から送られてくるメールの仕様が変更となったため、正しく動作しません。
+
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 [![Node version](https://img.shields.io/badge/node-v14.16.1-blue)](https://github.com/ysmtegsr/kindle-booklog-sync)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ysmtegsr/kindle-booklog-sync)
