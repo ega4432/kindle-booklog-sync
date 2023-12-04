@@ -1,8 +1,7 @@
 # Kindle Booklog Sync
 
-**Warning**
-
-The email sent by Amazon when we purchasing a book has been changed and does not work properly.
+> [!CAUTION]
+> The email sent by Amazon when we purchasing a book has been changed and does not work properly.
 
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 [![Node version](https://img.shields.io/badge/node-v14.16.1-blue)](https://github.com/ega4432/kindle-booklog-sync)
